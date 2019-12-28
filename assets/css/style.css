@@ -36,7 +36,7 @@ section {
 
 .intro2 {
     text-align: center;
-    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
 .intro2 button, .options button {
@@ -57,6 +57,7 @@ section {
     transform: translateY(-50%);
     display: flex;
     justify-content: space-around;
+    transition: opacity 1s ease 0.2s;
 
 }
 
