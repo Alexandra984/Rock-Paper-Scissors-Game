@@ -23,49 +23,57 @@ const game = ()=> {
             option.addEventListener("click", function() {
                 const computerNumber = Math.floor(Math.random() * 3);
                 const computerChoice = computerOptions[computerNumber];
-                // COMPARE HANDS
                 
+                // COMPARE HANDS
+                compareHands(this.textContent, computerChoice);
+
+                // UPDATE IMAGES
+                const playerHand = document.querySelector(".player-hand");
+                const computerHand = document.querySelector(".computer-hand");
+                
+                playerHand.src = `./assets/img/${this.textContent}.png`;
+                computerHand.src = `./assets/img/${computerChoice}.png`;
             });
         });
-        const compareHands = (playerChoice, computerChoice) => {
-            const winner = document.querySelector(".winner-message");
-            
-            if (playerChoice === computerChoice) {
-                winner.textContent = "It is a tie";
+    };
+
+    const compareHands = (playerChoice, computerChoice) => {
+        const winner = document.querySelector(".message");
+        if (playerChoice === computerChoice) {
+            winner.textContent = "It is a tie";
+            return;
+        }
+
+        if (playerChoice === 'rock') {
+            if (computerChoice === 'scissors') {
+                winner.textContent = "Player Wins";
+                return;
+            } else {
+                winner.textContent = "Computer Wins";
                 return;
             }
+        }
 
-            if (playerChoice === 'rock') {
-                if (computerChoice === 'scissors') {
-                    winner.textContent = "Player Wins";
-                    return;
-                } else {
-                    winner.textContent = "Computer Wins";
-                    return;
-                }
-            }
-
-            if (playerChoice === 'paper') {
-                if (computerChoice === 'scissors') {
-                    winner.textContent = "Computer Wins";
-                    return;
-                } else {
-                    winner.textContent = "Player Wins";
-                    return;
-                }
-            }
-
-            if (playerChoice === 'scissors') {
-                if (computerChoice === 'rock') {
-                    winner.textContent = "Computer Wins";
-                    return;
-                } else {
-                    winner.textContent = "Player Wins";
-                    return;
-                }
+        if (playerChoice === 'paper') {
+            if (computerChoice === 'scissors') {
+                winner.textContent = "Computer Wins";
+                return;
+            } else {
+                winner.textContent = "Player Wins";
+                return;
             }
         }
-    };
+
+        if (playerChoice === 'scissors') {
+            if (computerChoice === 'rock') {
+                winner.textContent = "Computer Wins";
+                return;
+            } else {
+                winner.textContent = "Player Wins";
+                return;
+            }
+        }
+    }
 
     // call functions
     startGame();
