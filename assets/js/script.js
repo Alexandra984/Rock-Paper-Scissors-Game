@@ -17,8 +17,11 @@ const game = ()=> {
     // Play Game
     const playGame = () => {
         const options = document.querySelectorAll(".options button");
-        console.log(options);
+        const playerHand = document.querySelector(".player-hand");
+        const computerHand = document.querySelector(".computer-hand");        
+        
         const computerOptions = ["rock", "paper", "scissors"];
+        
         options.forEach(option => {
             option.addEventListener("click", function() {
                 const computerNumber = Math.floor(Math.random() * 3);
@@ -28,9 +31,6 @@ const game = ()=> {
                 compareHands(this.textContent, computerChoice);
 
                 // UPDATE IMAGES
-                const playerHand = document.querySelector(".player-hand");
-                const computerHand = document.querySelector(".computer-hand");
-                
                 playerHand.src = `./assets/img/${this.textContent}.png`;
                 computerHand.src = `./assets/img/${computerChoice}.png`;
             });
@@ -38,15 +38,15 @@ const game = ()=> {
     };
 
     const updateScore = () => {
-        const playerScore = document.querySelector("player-score p");
-        const computerScore = document.querySelector("computer-score p");
-        
+        const playerScore = document.querySelector(".player-score p");
+        const computerScore = document.querySelector(".computer-score p");
+
         playerScore.textContent = pScore;
-        computerScore.textContent = cScore;        
-    };
+        computerScore.textContent = cScore;
+    }
 
     const compareHands = (playerChoice, computerChoice) => {
-        const winner = document.querySelector(".message");
+        const winner = document.querySelector(".winner-message");
         if (playerChoice === computerChoice) {
             winner.textContent = "It is a tie";
             return;
@@ -60,7 +60,7 @@ const game = ()=> {
                 return;
             } else {
                 winner.textContent = "Computer Wins";
-                cScore;
+                cScore++;
                 updateScore();
                 return;
             }
